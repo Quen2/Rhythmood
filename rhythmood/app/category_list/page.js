@@ -6,7 +6,7 @@ import CategoryInformation from "@/components/categories/category.informations"
 export default function CategoryList () {
     
     const [categories, setCategories] = useState()
-    const [categoryId, setCategoryId] = useState()
+    const [categoryId, setCategoryId] = useState(null)
     const [category, setCategory] = useState()
 
     /////// TODO => remplacer la homepage par la categorylist
@@ -21,11 +21,13 @@ export default function CategoryList () {
     },[])
 
     useEffect(() => {
-        fetch(`/api/spotify/categoryById/${categoryId}`)
-        .then(res => res.json())
-        .then(categoryData => {
-            setCategory(categoryData)
-        }) 
+        if(categoryId) {
+            fetch(`/api/spotify/categoryById/${categoryId}`)
+            .then(res => res.json())
+            .then(categoryData => {
+                setCategory(categoryData)
+            }) 
+        }
     },[categoryId])
     
     return (

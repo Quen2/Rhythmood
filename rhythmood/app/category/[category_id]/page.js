@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 export default function Category () {
     
     const params = useParams()
-    const [category, setCategory] = useState()
+    const [category, setCategory] = useState(null)
 
     useEffect(() => {
         fetch(`/api/spotify/categoryById/${params.category_id}`)
